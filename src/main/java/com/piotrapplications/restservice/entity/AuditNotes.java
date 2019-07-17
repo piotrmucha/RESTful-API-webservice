@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="audit_notes")
-public class Audit_notes {
+public class AuditNotes{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id_audit")
@@ -25,10 +25,10 @@ public class Audit_notes {
     @Temporal(TemporalType.TIMESTAMP)
     private Date modified;
 
-    public Audit_notes() {
+    public AuditNotes() {
     }
 
-    public Audit_notes(int referenced_id, int version, String title, String content, Date created, Date modified) {
+    public AuditNotes(int referenced_id, int version, String title, String content, Date created, Date modified) {
         this.referenced_id = referenced_id;
         this.version = version;
         this.title = title;

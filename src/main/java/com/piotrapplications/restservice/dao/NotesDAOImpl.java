@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.List;
 @Repository
 public class NotesDAOImpl implements NotesDAO {
@@ -33,7 +32,6 @@ public class NotesDAOImpl implements NotesDAO {
         Session currentSession = entityManager.unwrap(Session.class);
 
         Notes note = currentSession.get(Notes.class, id);
-
         return note;
     }
 
@@ -41,7 +39,7 @@ public class NotesDAOImpl implements NotesDAO {
     public void save_update(Notes note) {
         Session currentSession = entityManager.unwrap(Session.class);
 
-        currentSession.saveOrUpdate(note);
+        currentSession.merge(note);
     }
 
     @Override

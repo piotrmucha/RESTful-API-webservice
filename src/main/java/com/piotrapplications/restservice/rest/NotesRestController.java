@@ -1,8 +1,8 @@
 package com.piotrapplications.restservice.rest;
 
-import com.piotrapplications.restservice.entity.Audit_notes;
+import com.piotrapplications.restservice.entity.AuditNotes;
 import com.piotrapplications.restservice.entity.Notes;
-import com.piotrapplications.restservice.service.Audit_notesService;
+import com.piotrapplications.restservice.service.AuditNotesService;
 import com.piotrapplications.restservice.service.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,16 +15,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class NotesRestController {
     private NotesService notesService;
-    private Audit_notesService audit_notesService;
+    private AuditNotesService audit_notesService;
 
     @Autowired
-    public NotesRestController(NotesService notesService, Audit_notesService audit_notesService) {
+    public NotesRestController(NotesService notesService, AuditNotesService auditNotesService) {
         this.notesService = notesService;
-        this.audit_notesService = audit_notesService;
+        this.audit_notesService = auditNotesService;
     }
 
     @GetMapping("/history/{noteId}")
-    public List<Audit_notes> getHistoryofChanges(@PathVariable int noteId) {
+    public List<AuditNotes> getHistoryofChanges(@PathVariable int noteId) {
         return audit_notesService.getHistoryofChanges(noteId);
     }
 
