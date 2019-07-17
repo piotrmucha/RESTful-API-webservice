@@ -5,5 +5,10 @@ import com.piotrapplications.restservice.entity.Notes;
 import java.util.List;
 
 public interface NotesDAO {
-    public List<Notes> getAll();
+     List<Notes> getAll();
+     Notes getById(int id);
+
+     void save_update(Notes note);
+
+     void deleteById(int id);
 }

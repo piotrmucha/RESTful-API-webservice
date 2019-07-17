@@ -17,15 +17,40 @@ public class NotesDAOImpl implements NotesDAO {
         entityManager = theEntityManager;
     }
     @Override
-    @Transactional
     public List<Notes> getAll() {
 
         Session currentSession = entityManager.unwrap(Session.class);
-        Query<Notes> theQuery =
-                currentSession.createQuery(" FROM Notes ", Notes.class);
+        Query<Notes> theQuery = currentSession.createQuery(" FROM Notes ", Notes.class);
 
         List<Notes> resultList = theQuery.getResultList();
 
         return resultList;
+    }
+
+    @Override
+    public Notes getById(int id) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        Notes note = currentSession.get(Notes.class, id);
+
+        return note;
+    }
+
+    @Override
+    public void save_update(Notes note) {
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        currentSession.saveOrUpdate(note);
+    }
+
+    @Override
+    public void deleteById(int idToDelete) {
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        Query theQuery = currentSession.createQuery(
+                        "delete from Notes where id=:idToDelete");
+        theQuery.setParameter("idToDelete", idToDelete);
+        theQuery.executeUpdate();
     }
 }
