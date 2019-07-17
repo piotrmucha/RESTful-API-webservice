@@ -5,6 +5,8 @@ import com.piotrapplications.restservice.entity.Notes;
 import com.piotrapplications.restservice.service.Audit_notesService;
 import com.piotrapplications.restservice.service.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,31 +42,48 @@ public class NotesRestController {
     }
 
     @PostMapping("/notes")
-    public void addNote(@RequestBody Notes note) {
+    @ResponseBody
+    public ResponseEntity addNote(@RequestBody Notes note) {
+        //Checks if required fields are filled and returns appropriate HTTP status
+        if (note.getContent() == null || note.getTitle() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input");
+        }
         note.setId(0); // when user post note with id, this line force to adding new notes by setting id on 0
         notesService.save_update(note);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
 
     }
 
     @PutMapping("/notes")
-    public void updateNote(@RequestBody Notes note) {
+    @ResponseBody
+    public ResponseEntity updateNote(@RequestBody Notes note) {
 
+        //Checks if required fields are filled and returns appropriate HTTP status
+        if (note.getContent() == null || note.getTitle() == null || note.getId() == 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input");
+        }
+        Notes check = notesService.getById(note.getId());
+        if (check == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Note not found");
+        }
         notesService.save_update(note);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
 
     }
 
     @DeleteMapping("/notes/{noteId}")
-    public String deleteEmployee(@PathVariable int noteId) {
+    @ResponseBody
+    public ResponseEntity deleteNote(@PathVariable int noteId) {
 
-        Notes note = notesService.getById(noteId);
+        Notes check = notesService.getById(noteId);
 
 
-        if (note == null) {
-            throw new RuntimeException("Note id not found - " + noteId);
+        if (check == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Note not found");
         }
 
         notesService.deleteById(noteId);
 
-        return "Deleted note id - " + noteId;
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }
