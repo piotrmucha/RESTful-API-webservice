@@ -16,7 +16,7 @@ Webservice for managing and storing in database simple notes (without the UI par
         ``` .
 ##	Example usages 
 
-| HTTP METHOD | ENDPOINT |CRUD ACTION|
+|HTTP METHOD|ENDPOINT|CRUD ACTION|
 | ------ | ------ |--------|
 | POST | /api/notes |Create a new notes|
 | GET | /api/notes |Get a list of notes|
