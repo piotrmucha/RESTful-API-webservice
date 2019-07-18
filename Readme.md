@@ -17,14 +17,16 @@ Webservice for managing and storing in database simple notes (without the UI par
 ##	Example usages 
 
 |HTTP METHOD|ENDPOINT|CRUD ACTION|
-| ------ | ------ |--------|
+| ---- | ---------- |------------------|
 | POST | /api/notes |Create a new notes|
 | GET | /api/notes |Get a list of notes|
 | GET | /api/notes/{noteId} |Read a single note|
 | PUT | /api/notes |Update an existing note|
 | DELETE | /api/notes/{noteId} |Delete an existing note|
-| GET | /api/history/{noteId} |Read  history of changes for particular note
+| GET | /api/history/{noteId} |Read  history of changes for particular note|
+
 PostMan is a good application to check the functionality. You can use, for example, the post method as shown in the image below.
+
 
 ![Alt text](https://i.paste.pics/32255ce8df88b101eac651ce7c749842.png "Example usage")
 
@@ -33,7 +35,8 @@ PostMan is a good application to check the functionality. You can use, for examp
 Or to update particular note you should do this:
 
 ![Alt text](https://i.paste.pics/700fa837f7832f9830ae8bf94eb8e0b4.png "Example usage")
-And to delete the note with id=1
-![Alt text](https://i.paste.pics/3026d67dc6735efea96c8fe9f9ade3f3.png "Example usage")
 
+And to delete the note with id=1
+
+![Alt text](https://i.paste.pics/3026d67dc6735efea96c8fe9f9ade3f3.png "Example usage")
 
