@@ -3,7 +3,7 @@ Webservice for managing and storing in database simple notes (without the UI par
 ##  What is required for running the project:
 - You need to have JDK 1.8 and MySql Workbench installed
 ## Steps how to run scripts that will setup database for the project:
-1) Log in to MySQL as the root user and execute create_user.sql script (you can find all scripts in SQL_queries directory).
+1) Log in to MySQL as the root user and execute create_user.sql script (you can find all scripts in [SQL_queries](SQL_queries/) directory).
 2) Log in to MySql using username: **webUser** and password: **password** and execute create_database.sql script.
 ## 	Steps how to build and run the project:
 1) Download project as zip file and extract this.
@@ -25,7 +25,7 @@ Webservice for managing and storing in database simple notes (without the UI par
 | DELETE | /api/notes/{noteId} |Delete an existing note|
 | GET | /api/history/{noteId} |Read  history of changes for particular note|
 
-PostMan is a good application to check the functionality. You can use, for example, the post method as shown in the image below.
+[PostMan](https://www.getpostman.com/downloads/) is a good application to check the functionality. You can use, for example, the post method as shown in the image below.
 
 
 ![Alt text](https://i.paste.pics/32255ce8df88b101eac651ce7c749842.png "Example usage")
