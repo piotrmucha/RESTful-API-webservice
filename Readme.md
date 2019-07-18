@@ -40,6 +40,10 @@ And to delete the note with id=1
 
 ![Alt text](https://i.paste.pics/3026d67dc6735efea96c8fe9f9ade3f3.png "Example usage")
 
+## To-do-list
+
+ - [ ] Create integration tests for each functionality using H2 in-memory database and JUnit test framework.
+
 ## Author
 
 * **Piotr Mucha** - (https://github.com/piotrmucha)
