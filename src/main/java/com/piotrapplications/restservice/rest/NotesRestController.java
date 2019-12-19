@@ -2,14 +2,15 @@ package com.piotrapplications.restservice.rest;
 
 import com.piotrapplications.restservice.entity.AuditNotes;
 import com.piotrapplications.restservice.entity.Notes;
-import com.piotrapplications.restservice.service.AuditNotesService;
-import com.piotrapplications.restservice.service.NotesService;
+import com.piotrapplications.restservice.services.AuditNotesService;
+import com.piotrapplications.restservice.services.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -29,41 +30,42 @@ public class NotesRestController {
     }
 
     @GetMapping("/notes")
-    public List<Notes> getAll() {
-        return notesService.getAll();
+    public ResponseEntity<List<Notes>> getAll() {
+
+        return ResponseEntity.status(200).body(notesService.getAll());
     }
 
     @GetMapping("/notes/{noteId}")
-    public Notes getNote(@PathVariable int noteId) {
+    public ResponseEntity<Notes> getNote(@PathVariable int noteId) {
+        Optional<Notes> note = notesService.getById(noteId);
+        return note.map(notes -> ResponseEntity.status(HttpStatus.OK).body(notes))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
 
-        Notes note = notesService.getById(noteId);
-
-        return note;
     }
 
     @PostMapping("/notes")
     @ResponseBody
-    public ResponseEntity addNote(@RequestBody Notes note) {
+    public ResponseEntity<String> addNote(@RequestBody Notes note) {
         //Checks if required fields are filled and returns appropriate HTTP status
         if (note.getContent() == null || note.getTitle() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input");
         }
         note.setId(0); // when user post note with id, this line force to adding new notes by setting id on 0
         notesService.save_update(note);
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
 
     }
 
     @PutMapping("/notes")
     @ResponseBody
-    public ResponseEntity updateNote(@RequestBody Notes note) {
+    public ResponseEntity<String> updateNote(@RequestBody Notes note) {
 
         //Checks if required fields are filled and returns appropriate HTTP status
         if (note.getContent() == null || note.getTitle() == null || note.getId() == 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input");
         }
-        Notes check = notesService.getById(note.getId());
-        if (check == null) {
+        Optional<Notes> check = notesService.getById(note.getId());
+        if (!check.isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Note not found");
         }
         notesService.save_update(note);
@@ -73,13 +75,13 @@ public class NotesRestController {
 
     @DeleteMapping("/notes/{noteId}")
     @ResponseBody
-    public ResponseEntity deleteNote(@PathVariable int noteId) {
+    public ResponseEntity<String> deleteNote(@PathVariable int noteId) {
 
-        Notes check = notesService.getById(noteId);
+        Optional<Notes> check = notesService.getById(noteId);
 
 
-        if (check == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Note not found");
+        if (!check.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Note not found");
         }
 
         notesService.deleteById(noteId);
