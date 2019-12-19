@@ -42,7 +42,8 @@ And to delete the note with id=1
 
 ## To-do-list
 
- - [ ] Create integration tests for each functionality using H2 in-memory database and JUnit test framework.
+ - [ ] <s> Create integration tests for each functionality using H2 in-memory database and JUnit test framework. </s
+ - [ ] Create integration tests for each functionality using mysql testcontainer and Junit test framewrok.
 
 ## Author
 
