@@ -4,7 +4,7 @@ Webservice for managing and storing in database simple notes (without the UI par
 - You need to have JDK 1.8 and MySql Workbench installed
 ## Steps how to run scripts that will setup database for the project:
 1) Log in to MySQL as the root user and execute create_user.sql script (you can find all scripts in [SQL_queries](SQL_queries/) directory).
-2) Log in to MySql using username: **webUser** and password: **password** and execute V4.0.0.0__create_database.sql script.
+2) Log in to MySql using username: **webUser** and password: **password** and execute create_database.sql script.
 ## 	Steps how to build and run the project:
 1) Download project as zip file and extract this.
 2) Make sure that you are in RESTful-API-webservice-master directory and type: 
@@ -44,6 +44,7 @@ And to delete the note with id=1
 
  - [ ] <s>Create integration tests for each functionality using H2 in-memory database and JUnit test framework.</s>
  - [ ] Create integration tests for each functionality using mysql testcontainer and Junit test framewrok.
+ - [ ] Move versioning management from sql triggers to java code using @PrePersist and @PreUpdate annotations.
 
 ## Author
 
