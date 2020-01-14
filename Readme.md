@@ -43,8 +43,11 @@ And to delete the note with id=1
 ## To-do-list
 
  - [ ] <s>Create integration tests for each functionality using H2 in-memory database and JUnit test framework.</s>
+ - [X] Move versioning management from sql triggers to java code using @PrePersist and @PreUpdate annotations.
+ - [X] Create basic frontend configuration to manage notes using react.
+ - [X] Create basic configuration to integration testing using testcontainers/docker.
  - [ ] Create integration tests for each functionality using mysql testcontainer and Junit test framewrok.
- - [ ] Move versioning management from sql triggers to java code using @PrePersist and @PreUpdate annotations.
+ 
 
 ## Author
 
