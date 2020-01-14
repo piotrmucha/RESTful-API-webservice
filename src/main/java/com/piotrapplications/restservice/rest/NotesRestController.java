@@ -68,6 +68,10 @@ public class NotesRestController {
         if (!check.isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Note not found");
         }
+        Notes retrievedNotes = check.get();
+        note.setVersion(retrievedNotes.getVersion());
+        note.setModified(retrievedNotes.getModified());
+        note.setCreated(retrievedNotes.getCreated());
         notesService.save_update(note);
         return ResponseEntity.status(HttpStatus.OK).body(null);
 

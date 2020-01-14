@@ -1,10 +1,14 @@
 package com.piotrapplications.restservice.entity;
 
+import com.piotrapplications.restservice.listeners.NotesListener;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Table(name="notes")
+@EntityListeners(NotesListener.class)
 public class Notes {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -17,16 +21,16 @@ public class Notes {
     @Column(name="Content")
     private String content;
     @Column(name = "Created", columnDefinition="DATETIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    private LocalDateTime created;
     @Column(name = "Modified", columnDefinition="DATETIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modified;
+    private LocalDateTime modified;
+
+
 
     public Notes() {
     }
 
-    public Notes(String title, String content, Date created, Date modified) {
+    public Notes(String title, String content, LocalDateTime created, LocalDateTime modified) {
         this.title = title;
         this.content = content;
         this.created = created;
@@ -77,19 +81,19 @@ public class Notes {
         this.content = content;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 }

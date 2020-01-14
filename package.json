@@ -1,0 +1,45 @@
+{
+  "name": "restful-api-webservice",
+  "version": "1.0.0",
+  "description": "Frontend for rest Spring app",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piotrmucha/RESTful-API-webservice.git"
+  },
+  "keywords": [
+    "rest",
+    "notes",
+    "jpa",
+    "hibernate",
+    "mysql",
+    "testcontainers"
+  ],
+  "author": "Piotr Mucha",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/piotrmucha/RESTful-API-webservice/issues"
+  },
+  "proxy": "http://localhost:8080",
+  "homepage": "https://github.com/piotrmucha/RESTful-API-webservice#readme",
+  "dependencies": {
+    "css-loader": "^3.4.1",
+    "react": "^16.5.2",
+    "react-accessible-accordion": "^3.0.1",
+    "react-dom": "^16.5.2",
+    "rest": "^1.3.1"
+  },
+  "scripts": {
+    "watch": "webpack --watch -d"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}

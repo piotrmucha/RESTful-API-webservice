@@ -1,0 +1,46 @@
+
+.accordion {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+
+}
+
+.accordion__item + .accordion__item {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accordion__heading {
+    cursor: pointer;
+}
+
+.accordion__button {
+    background-color: #f4f4f4;
+    color: #444;
+    padding: 18px;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+}
+
+.accordion__button:hover {
+    background-color: #ddd;
+}
+
+
+.accordion__panel {
+    padding: 20px;
+    animation: fadein 0.35s ease-in;
+    font-size: 20px;
+}
+
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

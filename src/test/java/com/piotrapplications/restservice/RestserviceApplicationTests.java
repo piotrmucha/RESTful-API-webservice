@@ -1,6 +1,7 @@
 package com.piotrapplications.restservice;
 
 import com.piotrapplications.restservice.entity.Notes;
+import com.piotrapplications.restservice.services.AuditNotesService;
 import com.piotrapplications.restservice.services.NotesService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +28,8 @@ import javax.persistence.PersistenceContext;
 public class RestserviceApplicationTests {
     @Autowired
     private NotesService notesService;
+    @Autowired
+    private AuditNotesService auditNotesService;
     @PersistenceContext
     EntityManager entityManager ;
     @Autowired
@@ -55,6 +58,10 @@ public class RestserviceApplicationTests {
     public void getNotExistingNoteStatusResponse() {
         ResponseEntity<String> response = restTemplate.getForEntity("/api/notes/1",String.class);
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+    @Test
+    public void triggersInJavaTest() {
+
     }
 
 }

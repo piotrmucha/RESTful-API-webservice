@@ -1,6 +1,7 @@
 package com.piotrapplications.restservice.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -19,16 +20,14 @@ public class AuditNotes{
     @Column(name="Content")
     private String content;
     @Column(name = "Created", columnDefinition="DATETIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    private LocalDateTime created;
     @Column(name = "Modified", columnDefinition="DATETIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modified;
+    private LocalDateTime modified;
 
     public AuditNotes() {
     }
 
-    public AuditNotes(int referenced_id, int version, String title, String content, Date created, Date modified) {
+    public AuditNotes(int referenced_id, int version, String title, String content, LocalDateTime created, LocalDateTime modified) {
         this.referenced_id = referenced_id;
         this.version = version;
         this.title = title;
@@ -77,19 +76,19 @@ public class AuditNotes{
         this.content = content;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 
